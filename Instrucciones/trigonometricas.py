@@ -4,20 +4,20 @@ from math import *
 class trigonometricas(Expression):
 
     def __init__(self, vizq, tipo, fila, columna):
-        super().__init__(fila, columna)
         self.vizq = vizq
         self.tipo = tipo
+        super().__init__(fila, columna)
 
     def operar(self, arbol):
         izqValue = ''
         if self.vizq != None:
             izqValue = self.vizq.operar(arbol)
         
-        if self.tipo == 'Seno':
+        if self.tipo.operar(arbol) == 'Seno':
             return sin(izqValue)
-        elif self.tipo == 'Coseno':
+        elif self.tipo.operar(arbol) == 'Coseno':
             return cos(izqValue)
-        elif self.tipo == 'Tangente':
+        elif self.tipo.operar(arbol) == 'Tangente':
             return tan(izqValue)
         else:
             return None

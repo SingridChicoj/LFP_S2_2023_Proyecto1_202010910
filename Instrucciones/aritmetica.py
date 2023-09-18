@@ -3,10 +3,10 @@ from Abstract.abstract import Expression
 class aritmetica(Expression):
 
     def __init__(self, vizq, vder, tipo, fila, columna):
-        super().__init__(fila, columna)
         self.vizq = vizq
         self.vder = vder
         self.tipo = tipo
+        super().__init__(fila, columna)
     
     def operar(self, arbol):
         izqValue = ''

@@ -1,7 +1,7 @@
+from Instrucciones.aritmetica import *
+from Instrucciones.trigonometricas import *
 from Abstract.Lexema import *
 from Abstract.Numero import *
-from Instrucciones.aritmeticas import *
-from Instrucciones.trigonometricas import *
 
 
 reserved = {
@@ -149,16 +149,18 @@ def operar():
             operacion = lista_lexemas.pop(0)
         elif lexema.operar(None) == 'Valor1':
             n1 = lista_lexemas.pop(0)
+            if n1.operar(None) == '[':
+                n1 = operar()
         elif lexema.operar(None) == 'Valor2':
             n2 = lista_lexemas.pop(0)
+            if n2.operar(None) == '[':
+                n2.operar()
         
         if operacion and n1 and n2:
-            return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', 
-                            f'Fin: {n2.getFila()}:{n2.getColumna()}')
+            return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n2.getFila()}:{n2.getColumna()}')
 
         elif operacion and n1 and operacion.operar(None) == ('Seno' or 'Coseno' or 'Tangente'):
-            return trigonometricas(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}',
-                                f'Fin: {n1.getFila()}:{n1.getColumna()}')
+            return trigonometricas(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
     return None
 
 def operar_recursivo():
@@ -169,47 +171,50 @@ def operar_recursivo():
             instrucciones.append(operacion)
         else:
             break
-    
+
     for instruccion in instrucciones:
         print(instruccion.operar(None))
 
+    #return instrucciones
+    
+
 entrada = '''{ 
-    "operaciones":[
+    "Operaciones":[
         {
-        "operacion":"suma",
-        "valor1":4.5,
-        "valor2":5.32
+        "Operacion":"Suma",
+        "Valor1":4.5,
+        "Valor2":5.32
         }, 
         {
-        "operacion":"resta",
-        "valor1": 4.5,
-        "valor2":[
+        "Operacion":"Resta",
+        "Valor1": 4.5,
+        "Valor2":[
             {
-                "operacion":"potencia",
-                "valor1":10,
-                "valor2":3
+                "Operacion":"Potencia",
+                "Valor1":10,
+                "Valor2":3
             }
             ]
         },
         {
-        "operacion":"suma",
-        "valor1":[
+        "Operacion":"Suma",
+        "Valor1":[
             {
-                "operacion":"seno",
+                "Operacion":"seno",
                 "Valor1":90
             }
         ],
-        "valor2":5.32
+        "Valor2":5.32
         },
         {
-        "operacion":"multiplicacion",
-        "valor1":7,
-        "valor2":3
+        "Operacion":"Multiplicacion",
+        "Valor1":7,
+        "Valor2":3
         },
         {
-        "operacion":"division",
-        "valor1":15,
-        "valor2":3
+        "Operacion":"Division",
+        "Valor1":15,
+        "Valor2":3
         }
     ],
     "configuraciones":[
@@ -220,6 +225,34 @@ entrada = '''{
             "forma":"circulo"
         }
     ]
+}'''
+
+entrada2 = '''{
+{
+"Operacion":"Suma"
+"Valor1":4.5
+"Valor2":5.32
+},
+{
+"Operacion":"Resta"
+"Valor1":4.5
+"Valor2": [
+"Operacion":"Potencia"
+"Valor1":10
+"Valor2":3
+]},
+{
+"Operacion":"Suma"
+"Valor1":[
+"Operacion":"Seno"
+"Valor1":90
+]
+"Valor2":5.32
+}
+"Texto":"Realizacion de Operaciones"
+"Color-Fondo-Nodo":"Amarillo"
+"Color-Fuente-Nodo":"Rojo"
+"Forma-Nodo":"Circulo"
 }'''
 
 instruccion(entrada)
