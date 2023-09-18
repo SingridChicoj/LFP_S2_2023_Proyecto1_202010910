@@ -16,21 +16,21 @@ class aritmetica(Expression):
         if self.vder != None:
             derValue = self.vder.operar(arbol)
         
-        if self.tipo == 'Suma':
+        if self.tipo.operar(arbol) == 'Suma':
             return izqValue + derValue
-        elif self.tipo == 'Resta':
+        elif self.tipo.operar(arbol) == 'Resta':
             return izqValue - derValue
-        elif self.tipo == 'Multiplicacion':
+        elif self.tipo.operar(arbol) == 'Multiplicacion':
             return izqValue * derValue
-        elif self.tipo == 'Division':
+        elif self.tipo.operar(arbol) == 'Division':
             return izqValue / derValue
-        elif self.tipo == 'Potencia':
+        elif self.tipo.operar(arbol) == 'Potencia':
             return izqValue ** derValue
-        elif self.tipo == 'Raiz':
+        elif self.tipo.operar(arbol) == 'Raiz':
             return izqValue ** (1/derValue)
-        elif self.tipo == 'Inverso':
+        elif self.tipo.operar(arbol) == 'Inverso':
             return 1/izqValue
-        elif self.tipo == 'Mod':
+        elif self.tipo.operar(arbol) == 'Mod':
             return izqValue % derValue
         else:
             return None

@@ -43,6 +43,7 @@ global lista_lexemas
 n_linea = 1
 n_columna = 1
 lista_lexemas = []
+instrucciones = [] 
 
 
 
@@ -152,10 +153,10 @@ def operar():
             n2 = lista_lexemas.pop(0)
         
         if operacion and n1 and n2:
-            return aritmetica(operacion, n1, n2, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', 
+            return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', 
                             f'Fin: {n2.getFila()}:{n2.getColumna()}')
 
-        elif operacion and n1 and operacion.operar() == ('Seno' or 'Coseno' or 'Tangente'):
+        elif operacion and n1 and operacion.operar(None) == ('Seno' or 'Coseno' or 'Tangente'):
             return trigonometricas(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}',
                                 f'Fin: {n1.getFila()}:{n1.getColumna()}')
     return None
@@ -170,7 +171,7 @@ def operar_recursivo():
             break
     
     for instruccion in instrucciones:
-        print(instruccion.operar())
+        print(instruccion.operar(None))
 
 entrada = '''{ 
     "operaciones":[
