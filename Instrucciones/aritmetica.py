@@ -16,21 +16,21 @@ class aritmetica(Expression):
         if self.vder != None:
             derValue = self.vder.operar(arbol)
         
-        if self.tipo.operar(arbol) == 'Suma':
+        if self.tipo.operar(arbol) == 'Suma' or self.tipo.operar(arbol) == 'suma':
             return izqValue + derValue
-        elif self.tipo.operar(arbol) == 'Resta':
+        elif self.tipo.operar(arbol) == 'Resta' or self.tipo.operar(arbol) == 'resta':
             return izqValue - derValue
-        elif self.tipo.operar(arbol) == 'Multiplicacion':
+        elif self.tipo.operar(arbol) == 'Multiplicacion' or self.tipo.operar(arbol) == 'multiplicacion':
             return izqValue * derValue
-        elif self.tipo.operar(arbol) == 'Division':
+        elif self.tipo.operar(arbol) == 'Division' or self.tipo.operar(arbol) == 'division':
             return izqValue / derValue
-        elif self.tipo.operar(arbol) == 'Potencia':
+        elif self.tipo.operar(arbol) == 'Potencia' or self.tipo.operar(arbol) == 'potencia':
             return izqValue ** derValue
-        elif self.tipo.operar(arbol) == 'Raiz':
+        elif self.tipo.operar(arbol) == 'Raiz' or self.tipo.operar(arbol) == 'raiz':
             return izqValue ** (1/derValue)
-        elif self.tipo.operar(arbol) == 'Inverso':
+        elif self.tipo.operar(arbol) == 'Inverso' or self.tipo.operar(arbol) == 'inverso':
             return 1/izqValue
-        elif self.tipo.operar(arbol) == 'Mod':
+        elif self.tipo.operar(arbol) == 'Mod' or self.tipo.operar(arbol) == 'mod':
             return izqValue % derValue
         else:
             return None

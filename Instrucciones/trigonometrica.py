@@ -1,7 +1,7 @@
 from Abstract.abstract import Expression
 from math import *
 
-class trigonometricas(Expression):
+class trigonometrica(Expression):
 
     def __init__(self, vizq, tipo, fila, columna):
         self.vizq = vizq
@@ -13,11 +13,11 @@ class trigonometricas(Expression):
         if self.vizq != None:
             izqValue = self.vizq.operar(arbol)
         
-        if self.tipo.operar(arbol) == 'Seno':
+        if self.tipo.operar(arbol) == 'Seno' or self.tipo.operar(arbol) == 'seno':
             return sin(izqValue)
-        elif self.tipo.operar(arbol) == 'Coseno':
+        elif self.tipo.operar(arbol) == 'Coseno' or self.tipo.operar(arbol) == 'coseno':
             return cos(izqValue)
-        elif self.tipo.operar(arbol) == 'Tangente':
+        elif self.tipo.operar(arbol) == 'Tangente' or self.tipo.operar(arbol) == 'tangente':
             return tan(izqValue)
         else:
             return None

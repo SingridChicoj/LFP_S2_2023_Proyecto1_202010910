@@ -1,5 +1,5 @@
 from Instrucciones.aritmetica import *
-from Instrucciones.trigonometricas import *
+from Instrucciones.trigonometrica import *
 from Abstract.Lexema import *
 from Abstract.Numero import *
 
@@ -99,8 +99,8 @@ def instruccion(cadena):
             cadena = cadena[1:]
             puntero = 0
             n_columna += 1
-    for lexema in lista_lexemas:
-        print(lexema)
+    #for lexema in lista_lexemas:
+        #print(lexema)
 
 def armar_lexema(cadena):
     global n_linea
@@ -145,22 +145,22 @@ def operar():
     n2 = ''
     while lista_lexemas:
         lexema = lista_lexemas.pop(0)
-        if lexema.operar(None) == 'Operacion':
+        if lexema.operar(None) == 'Operacion' or lexema.operar(None) == 'operacion':
             operacion = lista_lexemas.pop(0)
-        elif lexema.operar(None) == 'Valor1':
+        if lexema.operar(None) == 'Valor1' or lexema.operar(None) == 'valor1':
             n1 = lista_lexemas.pop(0)
             if n1.operar(None) == '[':
                 n1 = operar()
-        elif lexema.operar(None) == 'Valor2':
+        if lexema.operar(None) == 'Valor2' or lexema.operar(None) == 'valor2':
             n2 = lista_lexemas.pop(0)
             if n2.operar(None) == '[':
-                n2.operar()
+                n2 = operar()
         
         if operacion and n1 and n2:
             return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n2.getFila()}:{n2.getColumna()}')
 
-        elif operacion and n1 and operacion.operar(None) == ('Seno' or 'Coseno' or 'Tangente'):
-            return trigonometricas(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
+        elif operacion and n1 and ((operacion.operar(None) == ('Seno' or 'Coseno' or 'Tangente')) or (operacion.operar(None) == ('seno' or 'coseno' or 'tangente'))):
+            return trigonometrica(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
     return None
 
 def operar_recursivo():
@@ -200,7 +200,7 @@ entrada = '''{
         "Operacion":"Suma",
         "Valor1":[
             {
-                "Operacion":"seno",
+                "Operacion":"Seno",
                 "Valor1":90
             }
         ],
@@ -227,33 +227,54 @@ entrada = '''{
     ]
 }'''
 
-entrada2 = '''{
-{
-"Operacion":"Suma"
-"Valor1":4.5
-"Valor2":5.32
-},
-{
-"Operacion":"Resta"
-"Valor1":4.5
-"Valor2": [
-"Operacion":"Potencia"
-"Valor1":10
-"Valor2":3
-]},
-{
-"Operacion":"Suma"
-"Valor1":[
-"Operacion":"Seno"
-"Valor1":90
-]
-"Valor2":5.32
-}
-"Texto":"Realizacion de Operaciones"
-"Color-Fondo-Nodo":"Amarillo"
-"Color-Fuente-Nodo":"Rojo"
-"Forma-Nodo":"Circulo"
+entrada2 = '''{ 
+    "operaciones":[
+        {
+        "operacion":"suma",
+        "valor1":4.5,
+        "valor2":5.32
+        }, 
+        {
+        "operacion":"resta",
+        "valor1": 4.5,
+        "valor2":[
+            {
+                "operacion":"potencia",
+                "valor1":10,
+                "valor2":3
+            }
+            ]
+        },
+        {
+        "operacion":"suma",
+        "valor1":[
+            {
+                "operacion":"seno",
+                "Valor1":180
+            }
+        ],
+        "valor2":5.32
+        },
+        {
+        "operacion":"multiplicacion",
+        "valor1":7,
+        "valor2":3
+        },
+        {
+        "operacion":"division",
+        "valor1":15,
+        "valor2":3
+        }
+    ],
+    "configuraciones":[
+        {
+            "texto":"Operaciones",
+            "fondo":"azul",
+            "fuente":"blanco",
+            "forma":"circulo"
+        }
+    ]
 }'''
 
-instruccion(entrada)
+instruccion(entrada2)
 operar_recursivo()
