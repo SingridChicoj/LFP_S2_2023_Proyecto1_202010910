@@ -40,6 +40,7 @@ global n_linea
 global n_columna
 global instrucciones
 global lista_lexemas
+global lista_errores
 
 n_linea = 1
 n_columna = 1
@@ -53,6 +54,7 @@ def instruccion(cadena):
     global n_linea
     global n_columna
     global lista_lexemas
+    global lista_errores
     lexema = ''
     puntero = 0
 
@@ -169,17 +171,17 @@ def operar():
             text = lista_lexemas.pop(0)
             return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
 
-        if lexema.operar(None) == 'fondo':
+        if lexema.operar(None) == 'fondo' or lexema.operar(None) == 'color-fondo-nodo':
             tipo = 'fondo'
             text = lista_lexemas.pop(0)
             return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
 
-        if lexema.operar(None) == 'fuente':
+        if lexema.operar(None) == 'fuente' or lexema.operar(None) == 'color-fuente-nodo':
             tipo = 'fuente'
             text = lista_lexemas.pop(0)
             return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
 
-        if lexema.operar(None) == 'forma':
+        if lexema.operar(None) == 'forma' or lexema.operar(None) == 'forma-nodo':
             tipo = 'forma'
             text = lista_lexemas.pop(0)
             return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
@@ -187,8 +189,17 @@ def operar():
         if operacion and n1 and n2:
             return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n2.getFila()}:{n2.getColumna()}')
 
+        elif operacion and n1 and n2 and((operacion.operar(None) == 'inverso') or (operacion.operar(None) == 'Inverso')):
+            return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n2.getFila()}:{n2.getColumna()}')
+
         elif operacion and n1 and ((operacion.operar(None) == 'seno') or (operacion.operar(None) == 'coseno') or (operacion.operar(None) =='tangente')):
             return trigonometrica(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
+        
+        elif operacion and n1 and ((operacion.operar(None) == 'Seno') or (operacion.operar(None) == 'Coseno') or (operacion.operar(None) =='Tangente')):
+            return trigonometrica(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
+
+        #elif operacion and n1 and (operacion.operar(None) == 'Inverso'):
+        #    return aritmetica(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
     return None
 
 def operar_recursivo():
@@ -199,9 +210,10 @@ def operar_recursivo():
             instrucciones.append(operacion)
         else:
             break
-    return instrucciones
     #for instruccion in instrucciones:
     #    print(instruccion.operar(None))
+    
+    return instrucciones
 
 def ObtenerErrores():
     global lista_errores
@@ -210,40 +222,39 @@ def ObtenerErrores():
 entrada = '''{ 
     "Operaciones":[
         {
+        "Operacion": "Division",
+        "Valor1": [
+        {
+            "Operacion": "Inverso",
+            "Valor1": 8
+        }
+        ],
+        "Valor2": 2.71
+        },
+        {
         "Operacion":"Suma",
         "Valor1":4.5,
         "Valor2":5.32
         }, 
         {
-        "Operacion":"Resta",
-        "Valor1": 4.5,
-        "Valor2":[
+            "Operacion": "Division",
+            "Valor1": [
             {
-                "Operacion":"Potencia",
-                "Valor1":10,
-                "Valor2":3
+                "Operacion": "Inverso",
+                "Valor1": 12
             }
-            ]
+            ],
+            "Valor2": 3.33
         },
         {
-        "Operacion":"Suma",
-        "Valor1":[
+            "Operacion": "Division",
+            "Valor1": [
             {
-                "Operacion":"Seno",
-                "Valor1":90
+                "Operacion": "Mod",
+                "Valor1": 25
             }
-        ],
-        "Valor2":5.32
-        },
-        {
-        "Operacion":"Multiplicacion",
-        "Valor1":7,
-        "Valor2":3
-        },
-        {
-        "Operacion":"Division",
-        "Valor1":15,
-        "Valor2":3
+            ],
+            "Valor2": 8.88
         }
     ],
     "configuraciones":[
@@ -256,54 +267,6 @@ entrada = '''{
     ]
 }'''
 
-entrada2 = '''{ 
-    "operaciones":[
-        {
-        "operacion":"suma",
-        "valor1":4.5,
-        "valor2":5.32
-        }, 
-        {
-        "operacion":"resta",
-        "valor1": 4.5,
-        "valor2":[
-            {
-                "operacion":"potencia",
-                "valor1":10,
-                "valor2":3
-            }
-            ]
-        },
-        {
-        "operacion":"suma",
-        "valor1":[
-            {
-                "operacion":"seno",
-                "Valor1":180
-            }
-        ],
-        "valor2":5.32
-        },
-        {
-        "operacion":"multiplicacion",
-        "valor1":7,
-        "valor2":3
-        },
-        {
-        "operacion":"division",
-        "valor1":15,
-        "valor2":3
-        }
-    ],
-    "configuraciones":[
-        {
-            "texto":"Operaciones",
-            "fondo":"azul",
-            "fuente":"blanco",
-            "forma":"circulo"
-        }
-    ]
-}'''
 
 #instruccion(entrada)
 #operar_recursivo()

@@ -1,29 +1,39 @@
 { 
-    "operaciones":[
+    "Operaciones":[
         {
-        "operacion":"multiplicacion",
-        "valor1":[
-            {
-                "operacion":"coseno",
-                "Valor1":180
-            }
+        "Operacion": "Division",
+        "Valor1": [
+        {
+            "Operacion": "Inverso",
+            "Valor1": 8
+        }
         ],
-        "valor2":8.37
+        "Valor2": 2.71
         },
         {
-        "operacion":"suma",
-        "valor1":4.5,
-        "valor2":5.32
+        "Operacion":"Suma",
+        "Valor1":4.5,
+        "Valor2":5.32
         }, 
         {
-        "operacion":"resta",
-        "valor1": 4.5,
-        "valor2": 2.5
+            "Operacion": "Division",
+            "Valor1": [
+            {
+                "Operacion": "Inverso",
+                "Valor1": 12
+            }
+            ],
+            "Valor2": 3.33
         },
         {
-        "operacion":"division",
-        "valor1":15,
-        "valor2":3
+            "Operacion": "Division",
+            "Valor1": [
+            {
+                "Operacion": "Mod",
+                "Valor1": 25
+            }
+            ],
+            "Valor2": 8.88
         }
     ],
     "configuraciones":[

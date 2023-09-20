@@ -104,9 +104,9 @@ class Interfaz:
 
     def errores(self):
         lista_errores = ObtenerErrores
-        for error in lista_errores:
+        for errores in lista_errores:
             cont = 1
-            er = error.operar(cont)
+            er = errores.operar(cont)
             cont += 1
             print(er)
 
@@ -159,7 +159,7 @@ def Graphviz(respuestaO):
                 if respuesta.ejecutarT() == "texto":
                     Titulo = str(respuesta.texto.operar(None))
                 #Configuracion para el color de fondo
-                if respuesta.ejecutarT() == "fondo":
+                if respuesta.ejecutarT() == "fondo" or respuesta.ejecutarT() == "color-fondo-nodo":
                     if temporal == ("amarillo" or "yellow"):
                         temporal = "yellow"
                         color = temporal
@@ -176,7 +176,7 @@ def Graphviz(respuestaO):
                         temporal = "purple"
                         color = temporal
                 #Configuracion para el color de la fuente
-                if respuesta.ejecutarT() == "fuente":
+                if respuesta.ejecutarT() == "fuente" or respuesta.ejecutarT() == "color-fuente-nodo":
                     if temporal == ("amarillo" or "yellow"):
                         temporal = "yellow"
                         fuente = temporal
@@ -199,7 +199,7 @@ def Graphviz(respuestaO):
                         temporal = "white"
                         fuente = temporal
                 #Configuracion para la forma
-                if respuesta.ejecutarT() == "forma":
+                if respuesta.ejecutarT() == "forma" or respuesta.ejecutarT() == "forma-nodo":
                     if temporal == ("circulo" or "circle"):
                         temporal = "circle"
                         forma = temporal

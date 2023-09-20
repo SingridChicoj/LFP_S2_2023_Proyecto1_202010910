@@ -15,11 +15,11 @@ class Texto(Expression):
             
         if tipo == "texto":
             return tipo
-        elif tipo == "fondo":
+        elif tipo == "fondo" or tipo == "color-fondo-nodo":
             return tipo
-        elif tipo == "fuente":
+        elif tipo == "fuente" or tipo == "color-fuente-nodo":
             return tipo
-        elif tipo == "forma":
+        elif tipo == "forma" or tipo == "forma-nodo":
             return tipo
         else:
             None

@@ -27,9 +27,9 @@ class aritmetica(Expression):
         elif self.tipo.operar(arbol) == 'Potencia' or self.tipo.operar(arbol) == 'potencia':
             return izqValue ** derValue
         elif self.tipo.operar(arbol) == 'Raiz' or self.tipo.operar(arbol) == 'raiz':
-            return izqValue ** (1/derValue)
+            return izqValue ** (1 / derValue)
         elif self.tipo.operar(arbol) == 'Inverso' or self.tipo.operar(arbol) == 'inverso':
-            return 1/izqValue
+            return 1 / izqValue 
         elif self.tipo.operar(arbol) == 'Mod' or self.tipo.operar(arbol) == 'mod':
             return izqValue % derValue
         else:
