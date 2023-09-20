@@ -1,5 +1,6 @@
 from Abstract.abstract import Expression
 from math import *
+import math
 
 class trigonometrica(Expression):
 
@@ -14,11 +15,17 @@ class trigonometrica(Expression):
             izqValue = self.vizq.operar(arbol)
         
         if self.tipo.operar(arbol) == 'Seno' or self.tipo.operar(arbol) == 'seno':
-            return sin(izqValue)
+            grados = izqValue
+            gradosConver = math.radians(grados)
+            return sin(gradosConver)
         elif self.tipo.operar(arbol) == 'Coseno' or self.tipo.operar(arbol) == 'coseno':
-            return cos(izqValue)
+            grados = izqValue
+            gradosConver = math.radians(grados)
+            return cos(gradosConver)
         elif self.tipo.operar(arbol) == 'Tangente' or self.tipo.operar(arbol) == 'tangente':
-            return tan(izqValue)
+            grados = izqValue
+            gradosConver = math.radians(grados)
+            return tan(gradosConver)
         else:
             return None
         

@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 #from tkinter import *
 #from tkinter import ttk
@@ -126,6 +128,10 @@ class Interfaz:
             print("")
             print(graf_contenido)
             print("")
+            os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
+            #os.system('dot -Tpng bb.dot -o grafo_original.png')
+            os.system('dot -Tpng Operaciones.dot -o Operaciones.png')
+
         except Exception as e:
             messagebox.showinfo("Se produjo un error: ", str(e))
             messagebox.showinfo("Mensaje", f"Error al generar el archivo de entrada, Verificar el archivo de entrada.")
@@ -218,7 +224,7 @@ def Graphviz(respuestaO):
         text = ""
         text += f"\tnode [shape={forma}]\n"
         text += f"\tnodo0 [label = \"{Titulo}\"]\n"
-        text += f"\tnodo0" + "[" + f"fontcolor = {fuente}" + "]\n"
+        text += f"\tnodo0" + "[" + f"style =filled"+ f",fillcolor = {color}" + f", fontcolor = {fuente}" + "]\n"
 
         for respuesta in respuestaO:
             ColumnumIzq += 1
@@ -233,7 +239,7 @@ def Graphviz(respuestaO):
                 text += f"\tnodoT{ColumTotal}" + "[" + f"style =filled" + f",fillcolor = {color}" + f", fontcolor = {fuente}" + "]\n"
 
                 text += f"\tnodoRespuesta{Columrespuesta}" + f"[label = \"{str(respuesta.tipo.operar(None))}: " + "\"]\n"
-                text += f"\tnodoIzqu{ColumnumIzq}" + "[label = \"Varlor1: " f"{str(respuesta.vizq.operar(None))}" + "\"]\n"
+                text += f"\tnodoIzqu{ColumnumIzq}" + "[label = \"Varlor1: " + f"{str(respuesta.vizq.operar(None))}" + "\"]\n"
                 text += f"\tnodoDere{ColumnumDer}" + "[label = \"Valor2: " + f"{str(respuesta.vder.operar(None))}" + "\"]\n"
 
                 text += f"\tnodoRespuesta{Columrespuesta} -> nodoIzqu{ColumnumIzq}\n"
