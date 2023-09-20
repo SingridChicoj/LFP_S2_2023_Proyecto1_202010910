@@ -5,7 +5,7 @@
         "valor1":4.5,
         "valor2":5.32
         }, 
-        {
+        {]
         "operacion":"resta",
         "valor1": 4.5,
         "valor2":[
@@ -13,7 +13,7 @@
                 "operacion":"potencia",
                 "valor1":10,
                 "valor2":3
-            }
+            }:
             ]
         },
         {
@@ -35,7 +35,7 @@
         "operacion":"divisi0n",
         "valor1":15,
         "valor2":3
-        }
+        }}
     ],
     "configuraciones":[
         {

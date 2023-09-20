@@ -1,6 +1,16 @@
 { 
     "operaciones":[
         {
+        "operacion":"multiplicacion",
+        "valor1":[
+            {
+                "operacion":"coseno",
+                "Valor1":180
+            }
+        ],
+        "valor2":8.37
+        },
+        {
         "operacion":"suma",
         "valor1":4.5,
         "valor2":5.32
