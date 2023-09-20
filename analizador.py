@@ -1,8 +1,9 @@
 from Instrucciones.aritmetica import *
 from Instrucciones.trigonometrica import *
+from Instrucciones.Texto import *
 from Abstract.Lexema import *
 from Abstract.Numero import *
-
+from Errores.Error import *
 
 reserved = {
     'ROPERACIONES'      : 'Operaciones',
@@ -43,6 +44,7 @@ global lista_lexemas
 n_linea = 1
 n_columna = 1
 lista_lexemas = []
+lista_errores = []
 instrucciones = [] 
 
 
@@ -95,12 +97,18 @@ def instruccion(cadena):
             puntero = 0
             n_linea = 1
             n_columna = 1
+        elif char == ' ' or char == '\r' or char == '{' or char == '}' or char == ',' or char == '.' or char == ':':
+            n_columna += 1
+            cadena = cadena[1:]
+            puntero = 0
         else:
+            lista_errores.append(Error(char, n_linea, n_columna))
             cadena = cadena[1:]
             puntero = 0
             n_columna += 1
     #for lexema in lista_lexemas:
         #print(lexema)
+    return lista_lexemas
 
 def armar_lexema(cadena):
     global n_linea
@@ -156,6 +164,26 @@ def operar():
             if n2.operar(None) == '[':
                 n2 = operar()
         
+        if lexema.operar(None) == 'texto':
+            tipo = 'texto'
+            text = lista_lexemas.pop(0)
+            return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
+
+        if lexema.operar(None) == 'fondo':
+            tipo = 'fondo'
+            text = lista_lexemas.pop(0)
+            return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
+
+        if lexema.operar(None) == 'fuente':
+            tipo = 'fuente'
+            text = lista_lexemas.pop(0)
+            return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
+
+        if lexema.operar(None) == 'forma':
+            tipo = 'forma'
+            text = lista_lexemas.pop(0)
+            return Texto(text, tipo, f'Inicio: {text.getFila()}', f'Fin: {text.getColumna()}')
+
         if operacion and n1 and n2:
             return aritmetica(n1, n2, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n2.getFila()}:{n2.getColumna()}')
 
@@ -171,12 +199,13 @@ def operar_recursivo():
             instrucciones.append(operacion)
         else:
             break
+    return instrucciones
+    #for instruccion in instrucciones:
+    #    print(instruccion.operar(None))
 
-    for instruccion in instrucciones:
-        print(instruccion.operar(None))
-
-    #return instrucciones
-    
+def ObtenerErrores():
+    global lista_errores
+    return lista_errores
 
 entrada = '''{ 
     "Operaciones":[
@@ -276,5 +305,5 @@ entrada2 = '''{
     ]
 }'''
 
-instruccion(entrada2)
-operar_recursivo()
+#instruccion(entrada)
+#operar_recursivo()

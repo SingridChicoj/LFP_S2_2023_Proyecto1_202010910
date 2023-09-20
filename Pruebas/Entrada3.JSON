@@ -1,0 +1,37 @@
+{ 
+    "operaciones":[
+        {
+        "operacion":"suma",
+        "valor1":4.5,
+        "valor2":5.32
+        }, 
+        {
+        "operacion":"resta",
+        "valor1": 4.5,
+        "valor2": 2.5
+        },
+        {
+        "operacion":"division",
+        "valor1":15,
+        "valor2":3
+        }
+    ],
+    "configuraciones":[
+        {
+            "texto":"Operaciones",
+            "fondo":"azul",
+            "fuente":"blanco",
+            "forma":"circulo"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
