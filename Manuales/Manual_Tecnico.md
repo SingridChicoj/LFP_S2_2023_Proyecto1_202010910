@@ -31,7 +31,7 @@ ___
 
 Para comenzar con la explicación de nuestra interfaz debemos de comprender que antes de crear una imagen a nuestro proyecto tenemos un algoritmo detras de ello a lo que se le llama un **ANALIZADOR**.
 
-A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que como dice analiza nuestra entrada y lo que incluye en este como lo son las operaciones. Pero antes debemos recorrer un poco más y irnos a nuestro Abstract donde utilizamos dicha libreria para crear nuestras clases.
+A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que como dice analiza nuestra archivo de entrada y lo que incluye en este como lo son las operaciones. Pero antes debemos recorrer un poco más y irnos a nuestro Abstract donde utilizamos dicha libreria para crear nuestras clases.
 
 * Abstract:
     
@@ -57,7 +57,7 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
         return self.columna
         ~~~
     
-    * Clase Lexema: en esta clase leemos nuestro lexema osea nuestras palabras frases dentro de la entrada. 
+    * Clase Lexema: en esta clase leemos nuestro lexema osea nuestras palabras frases dentro del archivo de entrada. 
 
         ~~~
         def __init__(self, lexema, fila, columna):
@@ -65,7 +65,7 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
         super().__init__(fila, columna)
         ~~~
 
-    * Clase Numero: en esta clase leemos nuestros números ingresados dentro de la entrada. 
+    * Clase Numero: en esta clase leemos nuestros números ingresados dentro del archivo de entrada. 
 
         ~~~
         def __init__(self, valor, fila, columna):
@@ -75,11 +75,11 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
 
 * Instrucciones: 
 
-    * Clase Aritmetica: en esta clase programamos todas aquellas operaciones basicas para nuestra entrada. 
+    * Clase Aritmetica: en esta clase programamos todas aquellas operaciones basicas para nuestro archivo de entrada. 
 
-    * Clase Trigonometrica: en esta clase programamos todas aquellas operaciones trigonometricas pedidas dentro de nuestra entrada, ademas que en dicha clase usamos la libreria math. 
+    * Clase Trigonometrica: en esta clase programamos todas aquellas operaciones trigonometricas pedidas dentro de nuestro archivo de entrada, ademas que en dicha clase usamos la libreria math. 
 
-    * Clase Texto: en esta clase programamos todas aquellas configuraciones que tendra nuestra entrada para el estilo de la grafica. 
+    * Clase Texto: en esta clase programamos todas aquellas configuraciones que tendra nuestro archivo de entrada para el estilo de la grafica. 
 
 Ahora ingresaremos a la magia donde ocurre el uso de todas estas clases a traves de métodos, listas, globals, etc. Aqui importamos todas nuestras clases anteriormente creadas. 
 
@@ -117,13 +117,13 @@ Empezamos con un *reserved* donde estan todas nuestras palabras reservadas ya qu
 
 A continuación veremos un resumen de las clases más importantes que hay dentro de **Analizador.py**
 
-* **instruccion(cadena)**: aqui creamos un método que tiene una instancia cadena, esta instancia ocuparemos para validar cada movimiento o caracter que tenga nuestra entrada.
+* **instruccion(cadena)**: aqui creamos un método que tiene una instancia cadena, esta instancia ocuparemos para validar cada movimiento o caracter que tenga nuestro archivo de entrada.
 
 * **armar_lexema(cadena)**: en este método es como dice armamos nuestro lexema osea cada letra.
 
 * **armar_numero(cadena)**: en este método es como dice armamos nuestros números tanto los decimales como enteros.
 
-* **operar**: es el método más importante ya que es donde nosotros operamos todas las operaciones y configuraciones que trae nuestra entrada. Aqui validamos y hacemos el análisis para cada operación y configuración de las anteriormente mencionadas. 
+* **operar**: es el método más importante ya que es donde nosotros operamos todas las operaciones y configuraciones que trae nuestro archivo de entrada. Aqui validamos y hacemos el análisis para cada operación y configuración de las anteriormente mencionadas. 
 
 * **operar_recursivo**: es el método donde utilizamos el objetivo de tal proyecto la *recursividad* para ello utilizamos el método operar por ello era el método más importante. 
     
@@ -138,6 +138,63 @@ A continuación veremos un resumen de las clases más importantes que hay dentro
     ~~~
     
 Para finalizar pasaremos a donde el usuario interactua con el programa así es la **INTERFAZ**.
+
+Es importante conocer los métodos utilizados, *abrirArchivo*, *Guardar*, *GuardarComo*, *actualizar_linea*, *analizar*, *grafica*, estos son todos los métodos utilizados durante la interfaz, cabe resaltar que para algunos de ellos se tuvieron que importar métodos del analizador. Aqui daremos nuestra atención a nuestro init ya que aqui es donde nosotros le dimos un diseño a nuestra interfaz la cual veremos a continuación. Ahora nuestros métodos son para cada una de las opciones de la interfaz.
+
+![Interfaz](interfaz2.png)
+
+A continuación veremos un resumen de las clases más importantes que hay dentro de **Analizador.py**
+
+* **abrirArchivo**: en este método es utilizado para seleccionar nuestro archivo, ya que este abre una ventana de dialogo y al momento de ser seleccionado se podra visualizar en nuestro cuadro donde se podra editar si es que el usuario así lo desea. Despues de seleccionar nuestro archivo esta ventana se cerrara y mostrara en nuestra interfaz dicho archivo de entrada, cabe resaltar que al momento de buscar un fichero solo mostrara con extensión .json.
+
+![Interfaz](Ventana1.png)
+
+
+* **actualizar_linea**: actualizara cada linea ingresada dentro de nuestro archivo de entrada o durante la edición del mismo.   
+
+* **analizar**: este método analiza nuestro archivo de entrada en el momento que el usuario este seguro de los cambios hechos podra analizar para conocer los resultados mostrados en un cuadro de dialogo. 
+
+![Interfaz](interfaz3.1.png)
+
+* **grafica**: aqui inicia nuestro algoritmo para crear el reporte que es una grafica y un documento .dot, en este método nos ayudamos de otro el cual pasaremos a un string para que todo aquel numero no tenga problemas durante la ejecucion. 
+
+    ~~~
+    operar_recursivo().clear()
+    instrucciones = instruccion(self.data)
+    respuestaO = operar_recursivo()
+    
+    graf_contenido = "digraph G {\n\n"
+    abrir = open("Operaciones.dot", "w", encoding="utf-8")
+    graf_contenido += str(Graphviz(respuestaO))
+    graf_contenido += '\n}'
+    abrir.write(graf_contenido)
+    abrir.close()
+
+    os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
+    os.system('dot -Tpng Operaciones.dot -o Operaciones.png')
+    ~~~
+
+    ![Interfaz](Ventana2.png)
+
+* **Graphviz**: este metodo es donde ocupamos todas aquellas configuraciones que el usuario ingreso a detalle como lo son:
+    * Texto: es el titulo de nuestra grafica
+    * Fondo: es el color de fondo para la forma escogida
+    * Fuente: es el color de fuente
+    * Forma: es la forma del objeto donde mostraran los resultados
+
+Luego crearemos una variable texto la cual es la responsable de darle una *a* a nuestra grafica ya que sin ello no se comprenderia. Haremos usos de los nodos para crear una grafica para el usuario donde utilizamos los un ciclo para recorrer cada valor ingresado por el usuario como cada resultado. Cada valor, respuesta y total tiene su poprio nodo igual que debemos de saber la **O** de Graphviz. 
+
+~~~
+    text += "\tnodoRespuesta{Columrespuesta}"
+    text += "\tnodoIzqu{ColumnumIzq}"
+    text += "\tnodoDere{ColumnumDer}"
+    text += "\tnodoT{ColumTotal}" 
+~~~
+
+![Interfaz](Operaciones.png)
+
+
+
 
 
 

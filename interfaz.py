@@ -123,11 +123,11 @@ class Interfaz:
             abrir.write(graf_contenido)
             abrir.close()
             
-            print("--------------------------------------------------")
+            '''print("--------------------------------------------------")
             print("             ** COMANDOS DE GRAPHVIZ **"           )
             print("")
             print(graf_contenido)
-            print("")
+            print("")'''
             os.environ["PATH"] += os.pathsep + 'C:\Program Files\Graphviz\bin'
             #os.system('dot -Tpng bb.dot -o grafo_original.png')
             os.system('dot -Tpng Operaciones.dot -o Operaciones.png')
@@ -153,8 +153,8 @@ def Graphviz(respuestaO):
                 pass
             else:
                 temporal = str(respuesta.texto.operar(None)).lower()
-                print(respuesta.texto.operar(None))
-                print(respuesta.ejecutarT())
+                '''print(respuesta.texto.operar(None))
+                print(respuesta.ejecutarT())'''
                 #Configuracion para el titulo
                 if respuesta.ejecutarT() == "texto":
                     Titulo = str(respuesta.texto.operar(None))
