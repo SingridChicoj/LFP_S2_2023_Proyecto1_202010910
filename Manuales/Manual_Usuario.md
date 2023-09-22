@@ -29,4 +29,4 @@ Función **ERRORES**: esta opción muestra un archivo de texto en el cual saldra
 
 Función **REPORTE**: esta opción generara una grafica en una imagen del documento analizado en esta imagen podremos visualizar de una mejor manera los resultados de nuestras operaciones ingresadas con la configuracion del color, forma, fuente con nuestro titulo.
 
-![Interfaz4](..\Operaciones.png)
+![Interfaz4](Operaciones.png)

@@ -6,6 +6,7 @@
         {
             "Operacion": "Inverso",
             "Valor1": 8
+
         }
         ],
         "Valor2": 2.71
@@ -30,7 +31,9 @@
             "Valor1": [
             {
                 "Operacion": "Mod",
-                "Valor1": 25
+                "Valor1": 25,
+                "Valor2": 4
+
             }
             ],
             "Valor2": 8.88

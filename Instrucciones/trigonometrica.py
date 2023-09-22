@@ -14,7 +14,10 @@ class trigonometrica(Expression):
         if self.vizq != None:
             izqValue = self.vizq.operar(arbol)
         
-        if self.tipo.operar(arbol) == 'Seno' or self.tipo.operar(arbol) == 'seno':
+        if self.tipo.operar(arbol) == 'Inverso' or self.tipo.operar(arbol) == 'inverso':
+            return 1 / izqValue
+        
+        elif self.tipo.operar(arbol) == 'Seno' or self.tipo.operar(arbol) == 'seno':
             grados = izqValue
             gradosConver = math.radians(grados)
             return sin(gradosConver)
@@ -26,6 +29,7 @@ class trigonometrica(Expression):
             grados = izqValue
             gradosConver = math.radians(grados)
             return tan(gradosConver)
+        
         else:
             return None
         
