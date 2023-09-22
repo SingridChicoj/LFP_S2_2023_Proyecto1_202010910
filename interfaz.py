@@ -45,7 +45,7 @@ class Interfaz:
         
         #Menu de Opciones
         self.menubarra.add_command(label="Analizar", command=self.analizar)
-        self.menubarra.add_command(label="Errores", command=self.errores)
+        self.menubarra.add_command(label="Errores", command=self.Errores)
         self.menubarra.add_command(label="Reporte", command=self.grafica)
 
     def abrirArchivo(self):
@@ -102,13 +102,39 @@ class Interfaz:
         except:
             messagebox.showinfo("Error", "No se ha ingresado ningun archivo")
 
-    def errores(self):
-        lista_errores = ObtenerErrores
-        for errores in lista_errores:
-            cont = 1
-            er = errores.operar(cont)
-            cont += 1
-            print(er)
+    '''def Errores(self):
+        lista_errores = ObtenerErrores()
+        noerror = 1
+        archivo = open('Errores.txt', 'w', encoding="utf-8")
+        archivo.write('{\n')
+        archivo.write('\t"errores": [\n')
+        for miserrores in lista_errores:
+            er = miserrores.operar(noerror)
+            archivo.write('\t\t{\n')
+            archivo.write('\t\t\t"No": ' + str(noerror) +',\n')
+            archivo.write('\t\t\t"Descripcion":{\n')
+            archivo.write('\t\t\t\t"lexema": ' + '"' + er + '",\n')
+            archivo.write('\t\t\t\t"tipo": "error lexico",\n')
+            archivo.write('\t\t\t\t"columna":\n')
+            archivo.write('\t\t\t\t"fila":\n')
+            archivo.write('\t\t\t}\n')
+            archivo.write('\t\t},\n')
+            #print("No.", noerror, ": ", er)
+            noerror = noerror + 1
+        archivo.write('\t\t]\n')
+        archivo.write('}\n')
+        messagebox.showinfo("Documento Realizado", "Errores encontrados: " + str(noerror - 1))'''
+
+    def Errores(self):
+        lista_errores = ObtenerErrores()
+        noerror = 1
+        archivo = open('Errores.txt', 'w', encoding="utf-8")
+        for miserrores in lista_errores:
+            error = miserrores.operar(noerror)
+            noerror += 1
+            print (error)
+            archivo.write(error)
+        messagebox.showinfo("Documento Realizado", "Errores encontrados: " + str(noerror - 1))
 
     def grafica(self):
         try:
@@ -238,7 +264,7 @@ def Graphviz(respuestaO):
                 text += f"\tnodoDere{ColumnumDer}" + "[" + f"style =filled" + f",fillcolor = {color}" + f", fontcolor = {fuente}" + "]\n"
                 text += f"\tnodoT{ColumTotal}" + "[" + f"style =filled" + f",fillcolor = {color}" + f", fontcolor = {fuente}" + "]\n"
 
-                text += f"\tnodoRespuesta{Columrespuesta}" + f"[label = \"{str(respuesta.tipo.operar(None))}: " + "\"]\n"
+                text += f"\tnodoRespuesta{Columrespuesta}" + f"[label = \"{str(respuesta.tipo.operar(None))}" + "\"]\n"
                 text += f"\tnodoIzqu{ColumnumIzq}" + "[label = \"Varlor1: " + f"{str(respuesta.vizq.operar(None))}" + "\"]\n"
                 text += f"\tnodoDere{ColumnumDer}" + "[label = \"Valor2: " + f"{str(respuesta.vder.operar(None))}" + "\"]\n"
 

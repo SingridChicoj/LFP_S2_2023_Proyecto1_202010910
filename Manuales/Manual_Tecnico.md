@@ -81,6 +81,10 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
 
     * Clase Texto: en esta clase programamos todas aquellas configuraciones que tendra nuestro archivo de entrada para el estilo de la grafica. 
 
+* Errores: 
+
+    * Clase Error: en esta clase podemos verificar los errores lexicos dentro de nuestro archivo de entrada. 
+
 Ahora ingresaremos a la magia donde ocurre el uso de todas estas clases a traves de métodos, listas, globals, etc. Aqui importamos todas nuestras clases anteriormente creadas. 
 
 Empezamos con un *reserved* donde estan todas nuestras palabras reservadas ya que lo que no tenga una palabra reservada se tomara como un error lexico.
@@ -123,7 +127,16 @@ A continuación veremos un resumen de las clases más importantes que hay dentro
 
 * **armar_numero(cadena)**: en este método es como dice armamos nuestros números tanto los decimales como enteros.
 
-* **operar**: es el método más importante ya que es donde nosotros operamos todas las operaciones y configuraciones que trae nuestro archivo de entrada. Aqui validamos y hacemos el análisis para cada operación y configuración de las anteriormente mencionadas. 
+* **operar**: es el método más importante ya que es donde nosotros operamos todas las operaciones y configuraciones que trae nuestro archivo de entrada. Aqui validamos y hacemos el análisis para cada operación y configuración de las anteriormente mencionadas e igualmente veremos que dentro de este método analizamos los errores lexicos dentro del archivo analizado ya que dentro del codigo verificamos todos aquellos lexemas y numeros aceptamos sino es un error lexico.
+
+    ~~~
+    else:
+        lista_errores.append(Error(char, n_linea, n_columna))
+        cadena = cadena[1:]
+        puntero = 0
+        n_columna += 1
+    ~~~
+
 
 * **operar_recursivo**: es el método donde utilizamos el objetivo de tal proyecto la *recursividad* para ello utilizamos el método operar por ello era el método más importante. 
     
@@ -136,7 +149,10 @@ A continuación veremos un resumen de las clases más importantes que hay dentro
         else:
             break
     ~~~
-    
+
+
+* **ObtenerErrores**: este método aparte de ser demasiado pequeño es muy importante ya que en este retornamos los errores lexicos.
+
 Para finalizar pasaremos a donde el usuario interactua con el programa así es la **INTERFAZ**.
 
 Es importante conocer los métodos utilizados, *abrirArchivo*, *Guardar*, *GuardarComo*, *actualizar_linea*, *analizar*, *grafica*, estos son todos los métodos utilizados durante la interfaz, cabe resaltar que para algunos de ellos se tuvieron que importar métodos del analizador. Aqui daremos nuestra atención a nuestro init ya que aqui es donde nosotros le dimos un diseño a nuestra interfaz la cual veremos a continuación. Ahora nuestros métodos son para cada una de las opciones de la interfaz.
@@ -175,6 +191,11 @@ A continuación veremos un resumen de las clases más importantes que hay dentro
     ~~~
 
     ![Interfaz](Ventana2.png)
+
+* **Errores**: este método nos mostrara en un archivo .txt los errores lexicos dentro del archivo de entrada, es muy importante reconocer que dentro de este escribimos el archivo de salida al recorrer una lista igualmente cuando termina mostrara una ventana al usuario con el mensaje de la cantidad de errores lexicos. 
+
+    ![Interfaz](Ventana3.png)
+
 
 * **Graphviz**: este metodo es donde ocupamos todas aquellas configuraciones que el usuario ingreso a detalle como lo son:
     * Texto: es el titulo de nuestra grafica

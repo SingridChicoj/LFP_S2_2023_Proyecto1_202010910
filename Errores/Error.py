@@ -6,8 +6,15 @@ class Error(Expression):
         super().__init__(fila, columna)
     
     def operar(self, no):
-        lex = "Error: " + self.lexema
-        return lex
+        num = f'\t\t"No.": {no}\n'
+        desc = '\t\t "Descripcion": {'
+        lex = f'\t\t\t"Lexema": {self.lexema}\n'
+        tipo = f'\t\t\t"Tipo": Error Lexico\n'
+        fil = f'\t\t\t"Fila": {self.fila}\n'
+        colum = f'\t\t\t"Columna": {self.columna}\n'
+        fin = '\t\t}\n'
+        return '\t{\n' + num + desc + lex + tipo + fil + colum + fin + '\t}'
+    
     
     def getFila(self):
         return super().getFila()

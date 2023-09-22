@@ -40,7 +40,6 @@ global n_linea
 global n_columna
 global instrucciones
 global lista_lexemas
-global lista_errores
 
 n_linea = 1
 n_columna = 1
@@ -54,7 +53,6 @@ def instruccion(cadena):
     global n_linea
     global n_columna
     global lista_lexemas
-    global lista_errores
     lexema = ''
     puntero = 0
 
