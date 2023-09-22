@@ -7,7 +7,7 @@ class Error(Expression):
     
     def operar(self, no):
         num = f'\t\t"No.": {no}\n'
-        desc = '\t\t "Descripcion": {'
+        desc = '\t\t "Descripcion": {\n'
         lex = f'\t\t\t"Lexema": {self.lexema}\n'
         tipo = f'\t\t\t"Tipo": Error Lexico\n'
         fil = f'\t\t\t"Fila": {self.fila}\n'
