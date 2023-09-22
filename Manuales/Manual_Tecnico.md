@@ -55,6 +55,7 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
         @abstractmethod
         def getColumna(self):
         return self.columna
+        ~~~
     
     * Clase Lexema: en esta clase leemos nuestro lexema osea nuestras palabras frases dentro de la entrada. 
 
@@ -62,6 +63,7 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
         def __init__(self, lexema, fila, columna):
         self.lexema = lexema
         super().__init__(fila, columna)
+        ~~~
 
     * Clase Numero: en esta clase leemos nuestros números ingresados dentro de la entrada. 
 
@@ -69,6 +71,7 @@ A este analizador es lo que nos ayuda a completar con nuestra interfaz ya que co
         def __init__(self, valor, fila, columna):
         self.valor = valor
         super().__init__(fila, columna)
+        ~~~
 
 * Instrucciones: 
 
@@ -123,3 +126,20 @@ A continuación veremos un resumen de las clases más importantes que hay dentro
 * **operar**: es el método más importante ya que es donde nosotros operamos todas las operaciones y configuraciones que trae nuestra entrada. Aqui validamos y hacemos el análisis para cada operación y configuración de las anteriormente mencionadas. 
 
 * **operar_recursivo**: es el método donde utilizamos el objetivo de tal proyecto la *recursividad* para ello utilizamos el método operar por ello era el método más importante. 
+    
+    ~~~
+    global instrucciones
+    while True:
+        operacion = operar()
+        if operacion:
+            instrucciones.append(operacion)
+        else:
+            break
+    ~~~
+    
+Para finalizar pasaremos a donde el usuario interactua con el programa así es la **INTERFAZ**.
+
+
+
+
+
