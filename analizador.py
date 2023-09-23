@@ -192,7 +192,7 @@ def operar():
         
         elif operacion and n1 and ((operacion.operar(None) == 'Inverso') or (operacion.operar(None) == 'Seno') or (operacion.operar(None) == 'Coseno') or (operacion.operar(None) =='Tangente')):
             return trigonometrica(n1, operacion, f'Inicio: {operacion.getFila()}:{operacion.getColumna()}', f'Fin: {n1.getFila()}:{n1.getColumna()}')
-    
+
     return None
 
 def operar_recursivo():
