@@ -17,21 +17,38 @@ class aritmetica(Expression):
             derValue = self.vder.operar(arbol)
         
         if self.tipo.operar(arbol) == 'Suma' or self.tipo.operar(arbol) == 'suma':
-            return izqValue + derValue
+            resultados = izqValue + derValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Resta' or self.tipo.operar(arbol) == 'resta':
-            return izqValue - derValue
+            resultados = izqValue - derValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Multiplicacion' or self.tipo.operar(arbol) == 'multiplicacion':
-            return izqValue * derValue
+            resultados = izqValue * derValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Division' or self.tipo.operar(arbol) == 'division':
-            return izqValue / derValue
+            resultados = izqValue / derValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Potencia' or self.tipo.operar(arbol) == 'potencia':
-            return izqValue ** derValue
+            resultados = izqValue ** derValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Raiz' or self.tipo.operar(arbol) == 'raiz':
-            return izqValue ** (1 / derValue)
+            resultados = izqValue ** (1 / derValue)
+            aprox = round(resultados, 3)
+            return aprox
         #elif self.tipo.operar(arbol) == 'Inverso' or self.tipo.operar(arbol) == 'inverso':
-        #    return 1 / izqValue 
+            #resultados = izqValue + derValue
+            #round(resultados, 2)
+            #return resultados
+            #return 1 / izqValue 
         elif self.tipo.operar(arbol) == 'Mod' or self.tipo.operar(arbol) == 'mod':
-            return izqValue % derValue
+            resultados = izqValue % derValue
+            aprox = round(resultados, 3)
+            return aprox
         else:
             return None
         

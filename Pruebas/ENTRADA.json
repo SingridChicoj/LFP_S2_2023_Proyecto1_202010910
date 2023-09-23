@@ -2,20 +2,9 @@
     "operaciones":[
         {
         "operacion":"suma",
-        "valor1":4.5,
+        "valor1":4.5062836,
         "valor2":5.32
         }, 
-        {
-        "operacion":"resta",
-        "valor1": 4.5,
-        "valor2":[
-            {
-                "operacion":"potencia",
-                "valor1":10,
-                "valor2":3
-            }
-            ]
-        },
         {
         "operacion":"suma",
         "valor1":[
@@ -25,11 +14,6 @@
             }
         ],
         "valor2":5.32
-        },
-        {
-        "operacion":"multiplicacion",
-        "valor1":7,
-        "valor2":3
         },
         {
         "operacion":"division",

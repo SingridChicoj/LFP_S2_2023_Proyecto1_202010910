@@ -15,20 +15,24 @@ class trigonometrica(Expression):
             izqValue = self.vizq.operar(arbol)
         
         if self.tipo.operar(arbol) == 'Inverso' or self.tipo.operar(arbol) == 'inverso':
-            return 1 / izqValue
-
+            resultados =  1 / izqValue
+            aprox = round(resultados, 3)
+            return aprox
         elif self.tipo.operar(arbol) == 'Seno' or self.tipo.operar(arbol) == 'seno':
             grados = izqValue
             gradosConver = math.radians(grados)
-            return sin(gradosConver)
+            aprox = round(gradosConver, 3)
+            return sin(aprox)
         elif self.tipo.operar(arbol) == 'Coseno' or self.tipo.operar(arbol) == 'coseno':
             grados = izqValue
             gradosConver = math.radians(grados)
-            return cos(gradosConver)
+            aprox = round(gradosConver, 3)
+            return cos(aprox)
         elif self.tipo.operar(arbol) == 'Tangente' or self.tipo.operar(arbol) == 'tangente':
             grados = izqValue
             gradosConver = math.radians(grados)
-            return tan(gradosConver)
+            aprox = round(gradosConver, 3)
+            return tan(aprox)
         
         else:
             return None

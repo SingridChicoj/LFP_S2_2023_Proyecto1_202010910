@@ -1,0 +1,51 @@
+digraph G {
+
+	node [shape=circle]
+	nodo0 [label = "Operaciones"]
+	nodo0[style =filled,fillcolor = blue, fontcolor = white]
+	nodoRespuesta1[style =filled,fillcolor = blue, fontcolor = white]
+	nodoIzqu1[style =filled,fillcolor = blue, fontcolor = white]
+	nodoDere1[style =filled,fillcolor = blue, fontcolor = white]
+	nodoT1[style =filled,fillcolor = blue, fontcolor = white]
+	nodoRespuesta1[label = "Division"]
+	nodoIzqu1[label = "Varlor1: 0.12"]
+	nodoDere1[label = "Valor2: 2.71"]
+	nodoRespuesta1 -> nodoIzqu1
+	nodoRespuesta1 -> nodoDere1
+	nodoT1[label = "0.04"]
+	nodoT1 -> nodoRespuesta1
+	nodoRespuesta2[style =filled,fillcolor = blue, fontcolor = white]
+	nodoIzqu2[style =filled,fillcolor = blue, fontcolor = white]
+	nodoDere2[style =filled,fillcolor = blue, fontcolor = white]
+	nodoT2[style =filled,fillcolor = blue, fontcolor = white]
+	nodoRespuesta2[label = "Suma"]
+	nodoIzqu2[label = "Varlor1: 4.5"]
+	nodoDere2[label = "Valor2: 5.32"]
+	nodoRespuesta2 -> nodoIzqu2
+	nodoRespuesta2 -> nodoDere2
+	nodoT2[label = "9.82"]
+	nodoT2 -> nodoRespuesta2
+	nodoRespuesta3[style =filled,fillcolor = blue, fontcolor = white]
+	nodoIzqu3[style =filled,fillcolor = blue, fontcolor = white]
+	nodoDere3[style =filled,fillcolor = blue, fontcolor = white]
+	nodoT3[style =filled,fillcolor = blue, fontcolor = white]
+	nodoRespuesta3[label = "Division"]
+	nodoIzqu3[label = "Varlor1: 0.08"]
+	nodoDere3[label = "Valor2: 3.33"]
+	nodoRespuesta3 -> nodoIzqu3
+	nodoRespuesta3 -> nodoDere3
+	nodoT3[label = "0.02"]
+	nodoT3 -> nodoRespuesta3
+	nodoRespuesta4[style =filled,fillcolor = blue, fontcolor = white]
+	nodoIzqu4[style =filled,fillcolor = blue, fontcolor = white]
+	nodoDere4[style =filled,fillcolor = blue, fontcolor = white]
+	nodoT4[style =filled,fillcolor = blue, fontcolor = white]
+	nodoRespuesta4[label = "Division"]
+	nodoIzqu4[label = "Varlor1: 1"]
+	nodoDere4[label = "Valor2: 8.88"]
+	nodoRespuesta4 -> nodoIzqu4
+	nodoRespuesta4 -> nodoDere4
+	nodoT4[label = "0.11"]
+	nodoT4 -> nodoRespuesta4
+
+}

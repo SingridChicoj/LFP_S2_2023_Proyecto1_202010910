@@ -129,11 +129,15 @@ class Interfaz:
         lista_errores = ObtenerErrores()
         noerror = 1
         archivo = open('Errores.txt', 'w', encoding="utf-8")
+        archivo.write('{\n')
+        archivo.write('\t"errores": [\n')
         for miserrores in lista_errores:
             error = miserrores.operar(noerror)
             noerror += 1
             print (error)
             archivo.write(error)
+        archivo.write('\t\t]\n')
+        archivo.write('}')
         messagebox.showinfo("Documento Realizado", "Errores encontrados: " + str(noerror - 1))
 
     def grafica(self):
