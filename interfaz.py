@@ -49,7 +49,7 @@ class Interfaz:
         self.menubarra.add_command(label="Reporte", command=self.grafica)
 
     def abrirArchivo(self):
-        archivo = filedialog.askopenfilename(filetypes=[("Archivos JSON", "*.JSON")])
+        archivo = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("Archivos JSON", "*.JSON")])
         if archivo:
             with open(archivo, 'r') as file:
                 x = file.read()
@@ -60,12 +60,18 @@ class Interfaz:
         print(x)
     
     def Guardar(self):
-        archivo = filedialog.asksaveasfile(defaultextension=".txt", filetypes=[("Archivos JSON", "*.JSON")])
-        if archivo:
-            x = self.textoblanco.get(1.0, tk.END)
+        try: 
+            archivo = root.title().split('-')[1][1:]
+        except:
+            archivo = ""
+            
+        #archivo = self.root.title()
+        if archivo != '':
             with open(archivo, 'w') as file:
-                file.write(x)
-            messagebox.showinfo("Guardado", "Archivo guardado!")
+                contenido = self.textoblanco.get('1.0', tk.END)
+                file.write(contenido)
+        self.textoblanco.edit_modified(0)
+
 
     def GuardarComo(self):
         archivo = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Archivos JSON", "*.JSON")])
