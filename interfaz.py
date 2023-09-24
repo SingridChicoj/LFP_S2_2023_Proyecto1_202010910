@@ -2,8 +2,9 @@ import os
 import sys
 import tkinter as tk
 #from tkinter import *
-#from tkinter import ttk
+from tkinter import ttk
 from tkinter import Tk
+from tkinter import filedialog
 from tkinter import filedialog, messagebox
 from tkinter.scrolledtext import ScrolledText
 
@@ -50,6 +51,7 @@ class Interfaz:
 
     def abrirArchivo(self):
         archivo = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("Archivos JSON", "*.JSON")])
+        self.root.title('Ruta - ' + archivo)
         if archivo:
             with open(archivo, 'r') as file:
                 x = file.read()
@@ -60,18 +62,16 @@ class Interfaz:
         print(x)
     
     def Guardar(self):
-        try: 
-            archivo = root.title().split('-')[1][1:]
+        try:
+            path = self.root.title().split('-')[1][1:]   
         except:
-            archivo = ""
-            
-        #archivo = self.root.title()
-        if archivo != '':
-            with open(archivo, 'w') as file:
-                contenido = self.textoblanco.get('1.0', tk.END)
-                file.write(contenido)
+            path=""
+        
+        if path != '':        
+            with open(path, 'w') as f:
+                content = self.textoblanco.get('1.0', tk.END)
+                f.write(content)  
         self.textoblanco.edit_modified(0)
-
 
     def GuardarComo(self):
         archivo = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Archivos JSON", "*.JSON")])

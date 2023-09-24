@@ -4,7 +4,7 @@
         "Operacion": "Division",
         "Valor1": [
         {
-            "Operacion": "Inverso",
+            "Operacion": "coseno",
             "Valor1": 8
 
         }
@@ -48,6 +48,7 @@
         }
     ]
 }
+
 
 
 
